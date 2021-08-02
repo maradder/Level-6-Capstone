@@ -73,5 +73,16 @@ authRouter.post( "/login", ( req, res, next ) => {
     } )
 } )
 
+// Delete User ------> Working in postman
+authRouter.delete( "/:userId", ( req, res, next ) => {
+    User.findByIdAndDelete( { _id: req.params.userId }, ( err, deletedUser ) => {
+        if ( err )
+        {
+            res.status( 500 )
+            return next( err )
+        }
+        return res.status( 200 ).send( `Successfully deleted user: ${ deletedUser.username }` )
+    } )
+} )
 
 module.exports = authRouter

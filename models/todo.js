@@ -7,7 +7,8 @@ const todoSchema = new Schema( {
     postedBy: { type: String, required: true },
     assignedTo: { type: String, required: true },
     createdOn: { type: Date, default: Date.now },
-    dueBy: { type: Date, required: false }
+    dueBy: { type: Date, required: false },
+    status: { type: String, enum: ['todo', 'inProgress', 'toReview', 'done'], default: 'todo' }
 } )
 
 module.exports = mongoose.model( "Todo", todoSchema )

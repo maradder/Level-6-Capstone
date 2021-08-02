@@ -1,0 +1,26 @@
+{
+  "name": "module-6-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fullcalendar/core": "^5.9.0",
+    "@fullcalendar/daygrid": "^5.9.0",
+    "@fullcalendar/list": "^5.9.0",
+    "@fullcalendar/react": "^5.9.0",
+    "@fullcalendar/timegrid": "^5.9.0",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express-jwt": "^6.0.0",
+    "mongoose": "^5.13.5",
+    "morgan": "^1.10.0",
+    "octokit": "^1.1.0"
+  }
+}

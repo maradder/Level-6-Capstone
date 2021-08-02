@@ -1,9 +1,9 @@
 const express = require( 'express' )
 const app = express()
-const axios = require( 'axios' )
+// const axios = require( 'axios' )
 require( "dotenv" ).config()
 const morgan = require( 'morgan' )
-const bcrypt = require( 'bcrypt' )
+// const bcrypt = require( 'bcrypt' )
 const mongoose = require( 'mongoose' )
 const expressJwt = require( 'express-jwt' )
 
@@ -15,8 +15,8 @@ app.use( express.json() )
 app.use( morgan( "dev" ) )
 
 // Connect to the database
-
-mongoose.connect( `mongodb+srv://marcus:${ process.env.DB_SECRET }@workbench.vjrau.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+// mongoose.connect( 'mongodb+srv://marcus:Wae8RpVtVVt0YlMw@workbench.vjrau.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect( 'mongodb://localhost:27017/workbench',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
