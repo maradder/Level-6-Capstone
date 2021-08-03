@@ -11,8 +11,8 @@ import { BookmarkContextProvider } from "./context/BookmarkContext"
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <CalendarContextProvider>
+    <UserContextProvider >
+      <CalendarContextProvider >
         <KanbanContextProvider>
           <NoteContextProvider>
             <BookmarkContextProvider>

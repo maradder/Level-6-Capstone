@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, createContext } from "react"
+import React, { useState, useEffect, createContext } from "react"
 import userAxios from "./userAxios"
 
 const NoteContext = createContext()
@@ -8,13 +8,9 @@ const NoteContextProvider = props => {
 
 	const getNotes = () => {
 		userAxios.get("/api/note").then(res => {
-			setNotesArray(prevState => [...res.data])
+			setNotesArray([...res.data])
 		})
 	}
-
-	useEffect(() => {
-		getNotes()
-	}, [])
 
 	const saveNote = newNote => {
 		userAxios.post("/api/note", newNote).then(res => {
@@ -41,20 +37,34 @@ const NoteContextProvider = props => {
 	}
 
 	const deleteNote = noteId => {
-		userAxios.delete(`/api/note/${noteId}`).then(res => {
-			const noteIndex = notesArray.findIndex(
-				existingNote => existingNote._id === noteId
-			)
-			setNotesArray(prevState => [
-				...prevState.slice(0, noteIndex),
-				...prevState.slice(noteIndex + 1),
-			])
-		})
+		userAxios
+			.delete(`/api/note/${noteId}`)
+			.then(() => {
+				const noteIndex = notesArray.findIndex(
+					existingNote => existingNote._id === noteId
+				)
+				setNotesArray(prevState => [
+					...prevState.slice(0, noteIndex),
+					...prevState.slice(noteIndex + 1),
+				])
+			})
+			.catch(err => console.log(err))
 	}
 
+	useEffect(() => {
+		getNotes()
+	}, [])
+
 	return (
-		<NoteContext.Provider value={{ saveNote, notesArray, setNotesArray, changeNote,
-            deleteNote }}>
+		<NoteContext.Provider
+			value={{
+				saveNote,
+				notesArray,
+				getNotes,
+				setNotesArray,
+				changeNote,
+				deleteNote,
+			}}>
 			{props.children}
 		</NoteContext.Provider>
 	)

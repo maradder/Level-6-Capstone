@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+
 const WidgetHeader = styled.div`
 	min-height: 60px;
 	max-height: 60px;

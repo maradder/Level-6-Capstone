@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from "react"
-import styled from "styled-components"
-import { Octokit, App, Action } from "octokit"
+import { Octokit } from "octokit"
 import { accessToken } from "../.secrets"
 import { WidgetHeader } from "./GlobalComponents"
+import {GitHubWidget, Event} from './StyledComponents'
 
-const GitHubWidget = styled.div`
-	height: 41vh;
-		width: 45%;
-	border: 1px solid #121212;
-	border-radius: 8px;
-	overflow-y: scroll;
-	background-color: #f3f6f9;
-	min-width: 300px;
 
-	@media screen and (max-width: 1160px) {
-		height: fit-content;
-		width: 100%;
-	}
-`
-function GitHub() {
+function GitHub(props) {
 	const octokit = new Octokit({ auth: accessToken })
 	const [gitHubUserState, setGitHubUserState] = useState({})
 	const [gitHubEvents, setGitHubEvents] = useState([])
@@ -34,26 +21,38 @@ function GitHub() {
 	}
 
 	const eventList = gitHubEvents.map(event => {
+		const createdObject = new Date(event.created_at)
+
 		return (
-			<div
-				style={{
-					margin: "16px 8px",
-					border: "1px solid #121212",
-					borderRadius: "8px",
-				}}>
-				<h5>{event.type}</h5>
+			<Event id={props.id}>
+				<p className="label">
+					{event.type}{" "}
+					<p className="commitContent">
+						{createdObject.toDateString()}
+					</p>
+				</p>
 				{/* <p>{event.created_at.toDateString()}</p> */}
-				<p>Initiated by: {event.actor.login}</p>
-				<p>Repo Name: {event.repo.name}</p>
-				{event.type == "PushEvent" ? (
-					<h5>
+				<p className="label">
+					Initiated by: <p>{event.actor.login}</p>
+				</p>
+				<p className="label">
+					Repo Name: <a href={event.repo.url}>{event.repo.name}</a>
+				</p>
+				{event.type === "PushEvent" ? (
+					<p className="commits label">
 						Commit messages:{" "}
-						{event.payload.commits.map(commit => commit.message)}
-					</h5>
+						<span>
+							{event.payload.commits.map(commit => (
+								<p className="commitContent">
+									{commit.message}
+								</p>
+							))}
+						</span>
+					</p>
 				) : (
 					<p></p>
 				)}
-			</div>
+			</Event>
 		)
 	})
 
@@ -65,15 +64,17 @@ function GitHub() {
 		<GitHubWidget>
 			<WidgetHeader>
 				<h5>GitHub {gitHubUserState.login}</h5>
-				<img
-					src={gitHubUserState.avatar_url}
-					alt="Avatar"
-					style={{
-						maxHeight: "50px",
-						maxWidth: "auto",
-						borderRadius: "50%",
-					}}
-				/>
+				<a href={gitHubUserState.html_url}>
+					<img
+						src={gitHubUserState.avatar_url}
+						alt="Avatar"
+						style={{
+							maxHeight: "50px",
+							maxWidth: "auto",
+							borderRadius: "50%",
+						}}
+					/>
+				</a>
 			</WidgetHeader>
 
 			{eventList}

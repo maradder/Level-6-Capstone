@@ -1,46 +1,19 @@
 import React, { useState, useContext, useEffect } from "react"
-import styled from "styled-components"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import axios from "axios"
 import { NoteContext } from "../context/NoteContext"
+import { NewNote } from "./StyledComponents"
 
-const Note = styled.div`
-	height: fit-content;
-	margin: 4px 24px 16px 24px;
-	padding: 4px;
-	width: auto;
-	border: 1px solid #121212;
-	border-radius: 8px;
 
-	p {
-		margin: 4px auto;
-	}
-
-	section {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		justify-content: space-between;
-	}
-
-	label {
-		display: flex;
-		flex-direction: column;
-	}
-
-	textarea {
-		min-width: 100%;
-		max-width: 100%;
-	}
-`
-function NoteEntry() {
+function NoteEntry(props) {
     const { saveNote } = useContext( NoteContext )
-    const [newNote, setNewNote] = useState( {
+    const toggleAddNote = props.toggle
+    const initNote = {
         title: "",
         dateReminder: "dueDate",
         note: "",
-    } )
+    }
+    const [newNote, setNewNote] = useState( initNote )  
     const [dueDate, setDueDate] = useState( new Date() )
 
     const handleChange = e => {
@@ -51,6 +24,12 @@ function NoteEntry() {
         } ) )
     }
 
+    const handleCancel = e => {
+		e.preventDefault()
+		setNewNote(initNote)
+		toggleAddNote()
+	}
+
     useEffect( () => {
         setNewNote( prevState => ( {
             ...prevState,
@@ -59,11 +38,11 @@ function NoteEntry() {
     }, [dueDate] )
 
     return (
-        <Note>
+        <NewNote>
             <section>
                 <label>
                     Note Title:{" "}
-                    <input name="title" value={newNote.title} onChange={handleChange} type="text" />
+                    <input required="true" name="title" value={newNote.title} onChange={handleChange} type="text" />
                 </label>
                 <label>
                     Remind me on:{" "}
@@ -74,10 +53,20 @@ function NoteEntry() {
                 </label>
             </section>
             <label>
-                Note: <textarea name="note" value={newNote.note} onChange={handleChange} />
+                Note: <textarea required="true" name="note" value={newNote.note} onChange={handleChange} />
             </label>
-            <button onClick={() => saveNote( newNote )}>Save Note</button>
-        </Note>
+            <section>
+				<button id="saveTaskButton" onClick={() => saveNote( newNote )}>
+					Save Bookmark
+				</button>
+				<button
+					id="cancelTaskButton"
+					type="button"
+					onClick={handleCancel}>
+					Cancel
+				</button>
+			</section>
+        </NewNote>
     )
 }
 

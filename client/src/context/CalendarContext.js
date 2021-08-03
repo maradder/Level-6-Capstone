@@ -1,7 +1,4 @@
-import React, { useState, createContext } from 'react';
-import userAxios from './userAxios'
-
-
+import React, { createContext } from 'react';
 
 const CalendarContext = createContext()
 const CalendarContextProvider = props => {

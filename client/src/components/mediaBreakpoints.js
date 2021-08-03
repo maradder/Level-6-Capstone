@@ -1,0 +1,6 @@
+export const smallPhone = ""
+export const largePhone = ""
+export const tablet = ""
+export const smallLaptop = ""
+export const largeLaptop = ""
+export const desktop = ""

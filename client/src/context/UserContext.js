@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react"
+import React, { useState, createContext } from "react"
 import axios from "axios"
 import userAxios from './userAxios'
 
@@ -68,17 +68,15 @@ const UserContextProvider = props => {
             ...prevState,
             errMsg: "",
         } ) )
+        
     }
-
-    // useEffect( () => {
-    //     setCredentials( initUserCredentials )
-    // }, [userState] )
 
     return (
         <UserContext.Provider
             value={{
                 credentials,
                 setCredentials,
+                initUserCredentials,
                 signup,
                 login,
                 logout,

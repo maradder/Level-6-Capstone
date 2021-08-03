@@ -40,6 +40,18 @@ p {
 	font-size: 16px;
 	line-height: 105%;
 	font-weight: 300;
+	margin: 4px auto;
+	
+}
+
+a {
+	font-weight: normal;
+}
+
+
+label {
+	display: flex;
+	flex-direction: column;
 }
 
 button {
@@ -47,4 +59,10 @@ button {
 	outline: none;
 	border: 1px solid #121212;
 	padding: 4px 8px;
+	cursor: pointer;
+}
+
+textarea {
+	min-width: 100%;
+	max-width: 100%;
 }

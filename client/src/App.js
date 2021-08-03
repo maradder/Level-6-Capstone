@@ -1,69 +1,48 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
+import React, { useContext, useEffect } from "react"
 import Bookmarks from "./components/Bookmarks"
-import NewBookmarkForm from "./components/NewBookmarkForm"
 import Notes from "./components/Notes"
 import KanBan from "./components/KanBan"
 import Calendar from "./components/Calendar"
 import GitHub from "./components/GitHub"
 import Authentication from "./components/Authentication"
 import { UserContext } from "./context/UserContext"
+import { KanbanContext } from "./context/KanbanContext"
+import { NoteContext } from "./context/NoteContext"
+import { BookmarkContext } from "./context/BookmarkContext"
+import {
+	GitNotes,
+	Workbench
+} from "./components/StyledComponents"
 
-const Workbench = styled.div`
-	display: grid;
-	grid-template-rows: fit-content 55% 20%;
-	grid-template-columns: 50px 1fr 1fr 1fr 1fr 50px;
-	min-height: 100vh;
-	min-width: 100vw;
-	row-gap: 16px;
-	column-gap: 10px;
 
-	div:nth-child(1) {
-		grid-row: 1/2;
-		grid-column: 2/6;
-	}
-	div:nth-child(2) {
-		grid-row: 2/3;
-		grid-column: 2/6;
-	}
-	div:nth-child(3) {
-		grid-row: 3/4;
-		grid-column: 2/3;
-	}
-	div:nth-child(4) {
-		grid-row: 3/4;
-		grid-column: 3/6;
-
-	}
-
-`
-
-const GitNotes = styled.div`
-		width: 98.5%;
-		height: fit-content;
-		margin: 0 auto 0 1.5%;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-`
 
 function App() {
-	const { token } = useContext(UserContext)
+	const { token } = useContext( UserContext )
+	const { getBookmarks } = useContext( BookmarkContext )
+	const { getTodos } = useContext( KanbanContext )
+	const { getNotes } = useContext( NoteContext )
+
+
+	useEffect( () => {
+		getBookmarks()
+		getTodos()
+		getNotes()
+	}, [token] )
 
 	return (
 		<Workbench className="App">
 			{token ? (
 				<>
-					<Bookmarks />
-					<KanBan />
-					<Calendar />
-					<GitNotes>
-						<Notes />
-						<GitHub />
+					<Bookmarks id="bookmarkComp" idmodal="bookmarkModal" />
+					<KanBan id="kanbanComp" />
+					<Calendar id="calendarComp" />
+					<GitNotes id="gitNotesComp">
+						<Notes id="notesComp" />
+						<GitHub id="githubComp" />
 					</GitNotes>
 				</>
 			) : (
-				<Authentication />
+				<Authentication id="authComp" />
 			)}
 		</Workbench>
 	)
