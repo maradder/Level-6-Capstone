@@ -50,14 +50,14 @@ const Authentication = props => {
 			{showLogin ? (
 				<AuthLogin>
 					<AuthForm onSubmit={handleLogin}>
-						<label>Username</label>
+						<label htmlFor="username">Username</label>
 						<input
 							type="text"
 							name="username"
 							value={credentials.username}
 							onChange={handleChange}
 						/>
-						<label>Password <span onClick={toggleShowPassword}>Show</span></label>
+						<label htmlFor="password">Password <span onClick={toggleShowPassword}>Show</span></label>
 						<input
 							type={showPassword ? "text" : "password"}
 							name="password"
@@ -79,21 +79,21 @@ const Authentication = props => {
 			) : (
 				<AuthSignup>
 					<AuthForm onSubmit={handleSignup}>
-						<label>Username</label>
+						<label htmlFor="username">Username</label>
 						<input
 							type="text"
 							name="username"
 							value={credentials.username}
 							onChange={handleChange}
 						/>
-						<label>Password <span onClick={toggleShowPassword}>Show</span></label>
+						<label htmlFor="password">Password <span onClick={toggleShowPassword}>Show</span></label>
 						<input
 							type={showPassword ? "text" : "password"}
 							name="password"
 							value={credentials.password}
 							onChange={handleChange}
 						/>
-						<label>Confirm Password <span onClick={toggleShowPassword}>Show</span></label>
+						<label htmlFor="confirmPassword">Confirm Password <span onClick={toggleShowPassword}>Show</span></label>
 						<input
 							type={showPassword ? "text" : "password"}
 							name="confirmPassword"

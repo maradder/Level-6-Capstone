@@ -109,11 +109,14 @@ export const Auth = styled.div`
 	flex-direction: column;
 	height: 300px;
 	width: 300px;
-	border: 1px solid #121212;
+	border: 1px solid #121212;               //darkAccent
 	border-radius: 8px;
-	background-color: #ffffffab;
+	background-color: #ffffff10;
 	padding: 16px 24px;
 	margin: auto;
+	box-shadow: 0.2rem 0.2rem 1rem #00000020;
+
+	
 
 	section {
 		display: flex;
@@ -156,13 +159,13 @@ export const AuthForm = styled.form`
 	#cancelLoginButton:hover,
 	#cancelSignupButton:hover {
 		background-color: #c4c4c4;
-		border: 1px solid #121212;
+		border: 1px solid #121212; //darkAccent
 	}
 
 	#loginButton:hover,
 	#signupButton:hover {
 		background-color: #fafafa;
-		border: 1px solid #121212;
+		border: 1px solid #121212; //darkAccent
 	}
 `
 
@@ -252,7 +255,7 @@ export const BookmarkModal = styled.div`
 	align-items: center;
 	background-color: #07305ddd;
 	border-radius: 8px;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	box-shadow: 0.2rem 0.2rem 0.4rem #000000;
 	color: white;
 	margin: auto;
@@ -284,9 +287,9 @@ export const BookmarkModal = styled.div`
 	}
 
 	form > section > #saveButton {
-		border: 1px solid #121212;
+		border: 1px solid #121212; //darkAccent
 		background-color: white;
-		color: #121212;
+		color: #121212; //darkAccent
 		font-weight: bold;
 	}
 
@@ -303,7 +306,7 @@ export const BookmarkTile = styled.div`
 	height: 75px;
 	width: 75px;
 	border-radius: 8px;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	box-shadow: 0.2rem 0.2rem 0.4rem #000000;
 	display: flex;
 	flex-direction: column;
@@ -327,7 +330,7 @@ export const BookmarkTile = styled.div`
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 			Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 		text-decoration-line: none;
-		color: #121212;
+		color: #121212; //darkAccent
 		text-transform: capitalize;
 		background: radial-gradient(
 			circle,
@@ -350,7 +353,7 @@ export const BookmarkTile = styled.div`
 export const CalendarWidget = styled.div`
 	height: fit-content;
 	width: 20vw;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 	min-width: 300px;
 	background-color: #f3f6f9;
@@ -369,7 +372,7 @@ export const CalendarWidget = styled.div`
 export const GitHubWidget = styled.div`
 	height: 41vh;
 	width: 45%;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 	overflow-y: scroll;
 	background-color: #f3f6f9;
@@ -392,7 +395,7 @@ export const Event = styled.div`
 	padding: 4px;
 	width: auto;
 	min-width: 300px;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 
 	.content {
@@ -478,7 +481,7 @@ export const KanBanSection = styled.div`
 	min-height: fit-content;
 	min-width: 375px;
 	max-width: fit-content;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 	background-color: #f3f6f9;
 	display: flex;
@@ -507,7 +510,7 @@ export const Task = styled.form`
 	padding: 4px;
 	width: 95%;
 	min-width: fit-content;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 
 	section {
@@ -531,7 +534,7 @@ export const Todo = styled.div`
 	padding: 4px;
 	width: 95%;
 	min-width: 300px;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 
 	.content {
@@ -574,7 +577,7 @@ export const NoteInstance = styled.div`
 	margin: 4px 24px 16px 24px;
 	padding: 4px;
 	width: 95%;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
@@ -616,7 +619,7 @@ export const NotePad = styled.div`
 	align-items: center;
 	height: 41vh;
 	width: 50%;
-	border: 1px solid #121212;
+	border: 1px solid #121212; //darkAccent
 	border-radius: 8px;
 	background-color: #f3f6f9;
 	overflow-y: scroll;
